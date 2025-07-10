@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/users/**
+        - id: inquiry-service
+          uri: lb://inquiry-service
+          predicates:
+            - Path=/inquiries/**
+        - id: aiis-service
+          uri: lb://aiis-service
+          predicates:
+            - Path=/aiis/**
+        - id: ahis-service
+          uri: lb://ahis-service
+          predicates:
+            - Path=/ahis/**
+        - id: contact-service
+          uri: lb://contact-service
+          predicates:
+            - Path=/contacts/**
+
+    discovery:
+      locator:
+        enabled: true
+        lower-case-service-id: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

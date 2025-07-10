@@ -1,0 +1,10 @@
+rootProject.name = 'msa'
+
+include("common")
+include("eureka-server")    //8761
+include("gateway-service")  //8080
+include("user-service")     //8081
+include("inquiry-service")  //8082
+include("aiis-service")     //8083
+include("ahis-service")     //8084
+include("contact-service")  //8085
