@@ -1,27 +1,26 @@
+
 plugins {
-	id 'java'
+	id 'java-library'
 }
 
-group = 'com.heinhub'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1-SNAPSHOT'	// 커밋 시 버전만 수정
 
-java {
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
+// 이 모듈은 실행 파일(jar)을 만들 필요가 없으므로 관련 설정을 비활성화시킴
+bootJar {
+	enabled = false
+}
+jar {
+	enabled = true
 }
 
+// 이 모듈이 다른 모듈에게 제공할 라이브러리 목록입니다.
 dependencies {
 	// Lombok (컴파일 타임 전용)
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
 	// Jakarta Bean Validation (예: @NotNull)
-	implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+	api 'jakarta.validation:jakarta.validation-api:3.0.2'
 
-	// 필요 시, JSON 관련 설정 등 추가 가능
-	// implementation 'com.fasterxml.jackson.core:jackson-databind'
-}
-
-tasks.withType(JavaCompile) {
-	options.encoding = 'UTF-8'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

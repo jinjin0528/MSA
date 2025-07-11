@@ -1,0 +1,20 @@
+
+spring:
+  # 테스트 시에는 실제 DB 대신 인메모리 H2 데이터베이스를 사용하도록 설정을 덮어씁니다.
+  datasource:
+    url: jdbc:h2:mem:contact-testdb  # 각 서비스마다 고유한 DB 이름을 주는 것이 좋습니다.
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  # H2 데이터베이스에 맞는 JPA/Hibernate 설정을 지정합니다.
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      # 테스트가 시작될 때 DB 스키마를 생성하고, 테스트가 끝나면 삭제합니다.
+      ddl-auto: create-drop
+
+  # 테스트 중에는 Eureka 서버에 등록하지 않도록 설정합니다.
+  cloud:
+    discovery:
+      enabled: false

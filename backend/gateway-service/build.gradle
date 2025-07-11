@@ -1,40 +1,11 @@
-plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.5.3'
-	id 'io.spring.dependency-management' version '1.1.7'
-}
+version = '0.0.1-SNAPSHOT'	// 커밋 시 버전만 수정
 
-group = 'com.heinhub'
-version = '0.0.1-SNAPSHOT'
-
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
-}
-
-repositories {
-	mavenCentral()
-}
-
-ext {
-	set('springCloudVersion', "2025.0.0")
-}
 
 dependencies {
-	implementation 'org.springframework.cloud:spring-cloud-starter-gateway-server-webmvc'
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
 
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
+	// 유레카 의존성 설정
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 }
